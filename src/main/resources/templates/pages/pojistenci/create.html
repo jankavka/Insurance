@@ -8,6 +8,7 @@
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
     <div class="container">
+        <h1>Vytvořit pojištěnce</h1>
         <form th:action="@{/pojistenci/novy}" method="post" th:object="${personDTO}">
             
             <div class="row my-4">

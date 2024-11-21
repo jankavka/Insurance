@@ -9,7 +9,7 @@
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
     <div class="container mb-3">
-        <div class="card mt-3 offset-2 col-7 mb-3">
+        <div class="card mt-3 offset-2 col-9 mb-3">
             <div class=" row card-body">
                     <h1 class="card-title mb-3" th:text="${person.name} + ' ' + ${person.surname} "></h1>
                     <div class="card-text row">
@@ -27,6 +27,23 @@
                             <p th:text="${person.city}"></p>
                             <p th:text="${person.zipCode}"></p>
                         </div>
+                    </div>
+                    <div class="mt-3">
+                        <h3>Sjednaná pojištění</h3>
+                        <table class="table">
+                            <thead>
+                                <th>Pojištění</th>
+                                <th>Částka</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
             </div>
             

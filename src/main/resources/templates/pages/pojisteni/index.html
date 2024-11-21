@@ -7,7 +7,24 @@
 </head>
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
-    <h1>Pojištění</h1>
+    <h1 class="text-center mt-3">Seznam pojištění</h1>
+    <div class="col-2 text-end">
+        <a class="btn btn-info" th:href="@{pojisteni/nove-pojisteni}">Přidat pojištění</a>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <th>Název pojištění</th>
+                <th>Akce</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
