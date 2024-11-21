@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail pojištění</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html ::header}"></header>
+    <div class="container mb-3">
+        <div class="card mt-3 offset-2 col-7 mb-3">
+            <div class=" row card-body">
+                    <h1 class="card-title mb-3" th:text="${person.name} + ' ' + ${person.surname} "></h1>
+                    <div class="card-text row">
+                        <div class="col-6">
+                            <p class="fw-bold">E-mail</p>
+                            <p class="fw-bold">Telefonní číslo</p>
+                            <p class="fw-bold">Ulice</p>
+                            <p class="fw-bold">Město</p>
+                            <p class="fw-bold">PSČ</p>
+                        </div>
+                        <div class="col-6">
+                            <p th:text="${person.email}"></p>
+                            <p th:text="${person.phoneNumber}"></p>
+                            <p th:text="${person.street}"></p>
+                            <p th:text="${person.city}"></p>
+                            <p th:text="${person.zipCode}"></p>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        <a th:href="@{/pojistenci}" class="btn btn-secondary">Zpět</a>
+    </div>
+    
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>
