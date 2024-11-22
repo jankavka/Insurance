@@ -7,7 +7,7 @@ public class InsuranceEnity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     @Column (nullable = false)
     private String name;
@@ -16,11 +16,11 @@ public class InsuranceEnity {
     private String description;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {

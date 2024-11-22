@@ -42,7 +42,7 @@ public class PersonsController {
         return "pages/pojistenci/create";
     }
 
-    @PostMapping ("/novy")
+    @PostMapping
     public String createPerson(@Valid @ModelAttribute PersonDTO personDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()){

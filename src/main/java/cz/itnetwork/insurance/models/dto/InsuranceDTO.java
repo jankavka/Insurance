@@ -2,11 +2,9 @@ package cz.itnetwork.insurance.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDate;
-
 public class InsuranceDTO {
 
-    private long Id;
+    private long id;
 
     @NotBlank( message = "Vyplňte pole")
     private String name;
@@ -15,11 +13,11 @@ public class InsuranceDTO {
     private String description;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public @NotBlank(message = "Vyplňte pole") String getName() {

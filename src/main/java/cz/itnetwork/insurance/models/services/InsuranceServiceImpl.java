@@ -7,6 +7,9 @@ import cz.itnetwork.insurance.models.dto.mappers.InsuranceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class InsuranceServiceImpl implements InsuranceService{
 
@@ -21,4 +24,30 @@ public class InsuranceServiceImpl implements InsuranceService{
         InsuranceEnity insuranceEnity = insuranceMapper.toInsuranceEntity(insuranceDTO);
         insuranceRepository.save(insuranceEnity);
     }
+
+    @Override
+    public List<InsuranceDTO> insuranceList() {
+        List<InsuranceDTO> list = new ArrayList<>();
+        insuranceRepository.findAll().forEach(i -> list.add(insuranceMapper.toInsuranceDTO(i)));
+        return list;
+    }
+
+    @Override
+    public void edit(InsuranceDTO insuranceDTO) {
+        InsuranceEnity oldEntity = insuranceRepository.findById(insuranceDTO.getId()).get();
+        insuranceMapper.updateInsuranceEntity(insuranceDTO,oldEntity);
+        insuranceRepository.save(oldEntity);
+    }
+
+    @Override
+    public InsuranceDTO getById(long id) {
+        return insuranceMapper.toInsuranceDTO(insuranceRepository.findById(id).get());
+    }
+
+    @Override
+    public void deleteInsurance(long id) {
+        insuranceRepository.deleteById(id);
+    }
+
+
 }
