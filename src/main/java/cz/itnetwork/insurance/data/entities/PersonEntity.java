@@ -2,6 +2,8 @@ package cz.itnetwork.insurance.data.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class PersonEntity {
 
@@ -29,6 +31,9 @@ public class PersonEntity {
 
     @Column (nullable = false)
     private String zipCode;
+
+    @OneToMany(mappedBy = "personEntity", cascade = CascadeType.ALL)
+    private List<InsuranceEnity> insurances;
 
     public long getPersonId() {
         return personId;
@@ -60,6 +65,14 @@ public class PersonEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<InsuranceEnity> getInsurances() {
+        return insurances;
+    }
+
+    public void setInsurances(List<InsuranceEnity> insurances) {
+        this.insurances = insurances;
     }
 
     public String getPhoneNumber() {

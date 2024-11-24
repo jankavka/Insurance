@@ -1,10 +1,14 @@
 package cz.itnetwork.insurance.models.services;
 
 import cz.itnetwork.insurance.data.entities.InsuranceEnity;
+import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.data.repositories.InsuranceRepository;
+import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
+import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.InsuranceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,11 +23,20 @@ public class InsuranceServiceImpl implements InsuranceService{
     @Autowired
     InsuranceRepository insuranceRepository;
 
+    @Autowired
+    PersonRepository personRepository;
+
+    @Autowired
+    PersonService personService;
+
     @Override
     public void create(InsuranceDTO insuranceDTO) {
         InsuranceEnity insuranceEnity = insuranceMapper.toInsuranceEntity(insuranceDTO);
+        insuranceEnity.setPersonEntity(personService.fetchEntity(insuranceDTO.getPersonId()));
         insuranceRepository.save(insuranceEnity);
     }
+
+
 
     @Override
     public List<InsuranceDTO> insuranceList() {
@@ -32,12 +45,6 @@ public class InsuranceServiceImpl implements InsuranceService{
         return list;
     }
 
-    @Override
-    public void edit(InsuranceDTO insuranceDTO) {
-        InsuranceEnity oldEntity = insuranceRepository.findById(insuranceDTO.getId()).get();
-        insuranceMapper.updateInsuranceEntity(insuranceDTO,oldEntity);
-        insuranceRepository.save(oldEntity);
-    }
 
     @Override
     public InsuranceDTO getById(long id) {
@@ -45,7 +52,7 @@ public class InsuranceServiceImpl implements InsuranceService{
     }
 
     @Override
-    public void deleteInsurance(long id) {
+    public void delete(long id) {
         insuranceRepository.deleteById(id);
     }
 

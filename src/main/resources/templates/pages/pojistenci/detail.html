@@ -7,7 +7,7 @@
     <title>Detail pojištění</title>
 </head>
 <body>
-    <header th:replace="~{fragments/layout.html ::header}"></header>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
     <div class="container mb-3">
         <div class="card mt-3 offset-2 col-9 mb-3">
             <div class=" row card-body">
@@ -44,6 +44,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div>
+                            <a class="btn btn-info" th:href="@{'/pojisteni/nove-pojisteni/' + ${person.personId}}">Přidat pojištění</a>
+                        </div>
                     </div>
             </div>
             
