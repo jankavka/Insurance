@@ -3,8 +3,10 @@ package cz.itnetwork.insurance.controllers;
 
 import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.data.repositories.PersonRepository;
+import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
+import cz.itnetwork.insurance.models.services.InsuranceService;
 import cz.itnetwork.insurance.models.services.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class PersonsController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    InsuranceService insuranceService;
 
     @GetMapping
     public String renderInsuredPersons(Model model){
@@ -56,8 +61,11 @@ public class PersonsController {
 
     @GetMapping("/detail/{personId}")
     public String renderPersonDetail(Model model, @PathVariable long personId){
+        List<InsuranceDTO> insurances = insuranceService.insuranceListById(personId);
         PersonDTO person = personService.findById(personId);
         model.addAttribute("person", person);
+        model.addAttribute("insurances", insurances);
+
 
         return "pages/pojistenci/detail";
     }
@@ -71,9 +79,8 @@ public class PersonsController {
     }
 
     @PostMapping("/edit/{personId}")
-    public String editPerson(@PathVariable long personId, PersonDTO personDTO, BindingResult result, RedirectAttributes redirectAttributes){
+    public String editPerson(@PathVariable long personId,@Valid PersonDTO personDTO, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
-            System.out.println("chyba");
             return renderEditForm(personId,personDTO);
 
         }

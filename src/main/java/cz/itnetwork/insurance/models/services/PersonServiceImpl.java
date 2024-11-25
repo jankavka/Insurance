@@ -56,8 +56,6 @@ public class PersonServiceImpl implements PersonService {
         PersonEntity fetchedEntity = fetchEntity(source.getPersonId());
         personMapper.updatePersonEntity(source,fetchedEntity);
         personRepository.save(fetchedEntity);
-
-
     }
 
     @Override

@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html ::header}"></header>
+
+    <div class="container mb-3">
+        <div class="card mt-3 offset-2 col-9 mb-3">
+            <div class=" row card-body">
+                    <h1 class="card-title mb-3">Detail Pojištění</h1>
+                    <div class="card-text row">
+                        <div class="col-6">
+                            <p class="fw-bold">Název</p>
+                            <p class="fw-bold">Předmět pojištění</p>
+                            <p class="fw-bold">Částka</p>
+                            <p class="fw-bold">Platnost od</p>
+                            <p class="fw-bold">Platnost do</p>
+                        </div>
+                        <div class="col-6">
+                            <p th:text="${insurance.name}"></p>
+                            <p th:text="${insurance.subjectOfInsurance}"></p>
+                            <p th:text="${insurance.amount}"></p>
+                            <p th:text="${insurance.validFrom}"></p>
+                            <p th:text="${insurance.validUntil}"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Edit</a>
+                    </div>
+            </div>
+            
+        </div>
+
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

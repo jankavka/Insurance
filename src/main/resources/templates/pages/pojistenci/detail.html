@@ -34,13 +34,13 @@
                             <thead>
                                 <th>Pojištění</th>
                                 <th>Částka</th>
-                                <th></th>
+                                <th>Akce</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr th:each="insurance: ${insurances}">
+                                    <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
+                                    <td th:text="${insurance.amount}"></td>
+                                    <td><a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a></td>
                                 </tr>
                             </tbody>
                         </table>

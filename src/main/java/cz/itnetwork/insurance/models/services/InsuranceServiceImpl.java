@@ -13,9 +13,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Service
 public class InsuranceServiceImpl implements InsuranceService{
+    @Override
+    public List<InsuranceEnity> insuranceEntityList() {
+        return StreamSupport.stream(insuranceRepository.findAll().spliterator(), false)
+                .toList();
+    }
 
     @Autowired
     InsuranceMapper insuranceMapper;
@@ -36,15 +42,15 @@ public class InsuranceServiceImpl implements InsuranceService{
         insuranceRepository.save(insuranceEnity);
     }
 
-
-
     @Override
     public List<InsuranceDTO> insuranceList() {
         List<InsuranceDTO> list = new ArrayList<>();
         insuranceRepository.findAll().forEach(i -> list.add(insuranceMapper.toInsuranceDTO(i)));
-        return list;
-    }
+        list.stream().forEach(a-> a.setPersonId(insuranceRepository.findById(a.getId()).get().getPersonEntity().getPersonId()));
 
+        return list;
+
+    }
 
     @Override
     public InsuranceDTO getById(long id) {
@@ -54,6 +60,28 @@ public class InsuranceServiceImpl implements InsuranceService{
     @Override
     public void delete(long id) {
         insuranceRepository.deleteById(id);
+    }
+
+    @Override
+    public List<InsuranceDTO> insuranceListById(long personId) {
+        return insuranceEntityList().stream()
+                .filter(i -> i.getPersonEntity().getPersonId() == personId)
+                .map(i -> insuranceMapper.toInsuranceDTO(i))
+                .toList();
+    }
+
+
+    @Override
+    public void saveUpdatedInsurance(InsuranceDTO insuranceDTO){
+        InsuranceEnity fetchedEntity = insuranceRepository.findById(insuranceDTO.getId()).get();
+        insuranceMapper.updateInsuranceEntity(insuranceDTO, fetchedEntity);
+        insuranceRepository.save(fetchedEntity);
+
+    }
+
+    @Override
+    public InsuranceEnity fetchedEntity(long id) {
+        return insuranceRepository.findById(id).get();
     }
 
 

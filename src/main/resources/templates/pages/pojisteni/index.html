@@ -14,15 +14,17 @@
         <table class="table">
             <thead>
                 <th>Název pojištění</th>
-                <th>Popis</th>
+                <th>Částka</th>
+                <th>Pojištěnec</th>
                 <th>Akce</th>
             </thead>
             <tbody>
                 <tr th:each="insurance:${insuranceList}">
-                    <td th:text="${insurance.name}"></td>
+                    <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
                     <td th:text="${insurance.amount}"></td>
+                    <td></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{'/pojisteni/upravit/' + ${insurance.id}}">Upravit</a>
+                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
                         <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
                     </td>
                 </tr>

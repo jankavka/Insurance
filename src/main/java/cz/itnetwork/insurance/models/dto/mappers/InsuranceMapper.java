@@ -18,4 +18,5 @@ public interface InsuranceMapper {
 
     void updateInsuranceDTO(InsuranceDTO source, @MappingTarget InsuranceDTO target);
 
+
 }
