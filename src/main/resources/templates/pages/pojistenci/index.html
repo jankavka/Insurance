@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout.html :: head}">
     <meta charset="UTF-8">
@@ -11,10 +11,11 @@
     <h1 class="text-center mt-3">Pojištěnci</h1>
     <div class="bg-success text-center py-2 mb-2 text-light" th:text="${success}" th:if="${success}"></div>
     <div class="bg-danger text-light" th:text="${error}" th:if="${error}"></div>
-    <div class="col-2 text-end">
-        <a class="btn btn-info text-center mb-3" th:href="@{/pojistenci/novy}">Vytvořit pojištěnce</a>
-    </div>
+   
     <div class="container">
+        <div class="col-2 text-end">
+            <a class="btn btn-info text-center mb-3" th:href="@{/pojistenci/novy}">Vytvořit pojištěnce</a>
+        </div>
         <table class="table">
             <thead>
                 <th>Jméno a příjmení</th>
@@ -34,6 +35,52 @@
         </table>
     </div>
 
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojištěnci</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html ::header}"></header>
+    
+    <h1 class="text-center mt-3">Pojištěnci</h1>
+    <div class="bg-success text-center py-2 mb-2 text-light" th:text="${success}" th:if="${success}"></div>
+    <div class="bg-danger text-light" th:text="${error}" th:if="${error}"></div>
+   
+    <div class="container">
+        <div class="text-end mb-3">
+            <a class="btn btn-info" th:href="@{/pojistenci/novy}">Vytvořit pojištěnce</a>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Jméno a příjmení</th>
+                    <th>Bydliště</th>
+                    <th>Akce</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person:${persons}">
+                    <td>
+                        <a th:href="@{'/pojistenci/detail/' + ${person.personId}}" th:text="${person.name} + ' ' + ${person.surname}"></a>
+                    </td>
+                    <td th:text="${person.street} + ', ' + ${person.city} + ', ' + ${person.zipCode}"></td>
+                    <td>
+                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit</a>
+                        <a class="btn btn-danger" th:href="@{'/pojistenci/delete/' + ${person.personId}}">Smazat</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

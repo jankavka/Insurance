@@ -8,29 +8,55 @@
     <header th:replace="~{fragments/layout.html ::header}"></header>
 
     <div class="container mb-3">
-        <div class="card mt-3 offset-2 col-9 mb-3">
-            <div class=" row card-body">
+        <div class="card mt-3 col-md-10 mb-4">
+            <div class="row card-body">
                     <h1 class="card-title mb-3">Detail Pojištění</h1>
-                    <div class="card-text row">
-                        <div class="col-6">
-                            <p class="fw-bold">Název</p>
-                            <p class="fw-bold">Předmět pojištění</p>
-                            <p class="fw-bold">Částka</p>
-                            <p class="fw-bold">Platnost od</p>
-                            <p class="fw-bold">Platnost do</p>
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <p class="fw-bold">Název</p>
+                            </div>
+                            <div class="col-sm-5 offset-2 col-6 text-start text-sm-start">
+                                <p th:text="${insurance.name}"></p>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <p th:text="${insurance.name}"></p>
-                            <p th:text="${insurance.subjectOfInsurance}"></p>
-                            <p th:text="${insurance.amount}"></p>
-                            <p th:text="${insurance.validFrom}"></p>
-                            <p th:text="${insurance.validUntil}"></p>
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <p class="fw-bold">Předmět pojištění</p>
+                            </div>
+                            <div class="col-sm-5 offset-2 col-6 text-start text-sm-start">
+                                <p th:text="${insurance.subjectOfInsurance}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <p class="fw-bold">Částka</p>
+                            </div>
+                            <div class="col-sm-5 offset-2 col-6 text-start text-sm-start">
+                                <p th:text="${insurance.subjectOfInsurance} + ' Kč'"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <p class="fw-bold">Platnost od</p>
+                            </div>
+                            <div class="col-sm-5 offset-2 col-6 text-start text-sm-start">
+                                <p th:text="${insurance.validFrom}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <p class="fw-bold">Platnost do</p>
+                            </div>
+                            <div class="col-sm-5 offset-2 col-6 text-start text-sm-start">
+                                <p th:text="${insurance.validUntil}"></p>
+                            </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="mt-4">
                         <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
                         <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
-                        <a class="btn btn-info" th:href="@{/pojisteni}">Seznam pojištění</a>
+                        <a class="btn btn-info mt-1 mt-sm-0" th:href="@{/pojisteni}">Seznam pojištění</a>
                     </div>
             </div>
         </div>      

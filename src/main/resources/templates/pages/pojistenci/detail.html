@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout.html :: head}">
     <meta charset="UTF-8">
@@ -58,6 +58,101 @@
         <a th:href="@{/pojistenci}" class="btn btn-secondary">Zpět</a>
     </div>
     
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail pojištění</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+    <div class="container mb-3">
+        <div class="card mt-3 col-sm-10 mb-4">
+            <div class="row card-body">
+                <h1 class="card-title mb-3" th:text="${person.name} + ' ' + ${person.surname}"></h1>
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-sm-4 col-4">
+                            <p class="fw-bold">E-mail</p>
+                        </div>
+                        <div class="col-sm-7 offset-1 col-7 text-start text-sm-start">
+                            <p th:text="${person.email}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-4">
+                            <p class="fw-bold">Telefonní číslo</p>
+                        </div>
+                        <div class="col-sm-7 offset-1 col-7 text-start text-sm-start">
+                            <p th:text="${person.phoneNumber}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-4">
+                            <p class="fw-bold">Ulice</p>
+                        </div>
+                        <div class="col-sm-7 offset-1 col-7 text-start text-sm-start">
+                            <p th:text="${person.street}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-4">
+                            <p class="fw-bold">Město</p>
+                        </div>
+                        <div class="col-sm-7 offset-1 col-7 text-start text-sm-start">
+                            <p th:text="${person.city}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-4">
+                            <p class="fw-bold">PSČ</p>
+                        </div>
+                        <div class="col-sm-7 offset-1 col-7 text-start text-sm-start">
+                            <p th:text="${person.zipCode}"></p>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <a class="btn btn-success" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit pojištěnce</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="mt-3">
+                    <h3>Sjednaná pojištění</h3>
+                    <table class="table responsive">
+                        <thead>
+                            <tr>
+                                <th>Pojištění</th>
+                                <th>Částka</th>
+                                <th class="text-sm-center text-center">Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="insurance: ${insurances}">
+                                <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
+                                <td th:text="${insurance.amount} + ' Kč'"></td>
+                                <td class="text-sm-center text-center">
+                                    <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
+                                    <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a class="btn btn-info" th:href="@{'/pojisteni/nove-pojisteni/' + ${person.personId}}">Přidat pojištění</a>
+                    </div>
+                </div>
+    </div>
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

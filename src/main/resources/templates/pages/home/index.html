@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojištění</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+    <main class="container text-center mt-4">
+        <h1>Vítejte na pojišťovacím webu</h1>
+        <div class="my-4">
+            <img src="/images/pojisteni.png" alt="pojisteni" class="img-fluid">
+        </div>
+    </main>
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout.html  :: head}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,4 +33,4 @@
 
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
-</html>
+</html>-->

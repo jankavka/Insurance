@@ -7,73 +7,77 @@
 </head>
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
-    <div class="container">
+    <div class="container mt-4">
+        <h1 class="mb-4">Upravit pojištěnce</h1>
         <form th:action="@{'/pojistenci/edit/'+ ${personId}}" method="post" th:object="${personDTO}">
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="name">Jméno</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="name" th:field="*{name}">
                     <small class="text-danger" th:errors="*{name}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="surname">Příjmení</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="surname" th:field="*{surname}">
                     <small class="text-danger" th:errors="*{surname}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="email">E-mail</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="email" th:field="*{email}">
                     <small class="text-danger" th:errors="*{email}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label"  for="phone-number">Telefonní číslo</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="phone-number" th:field="*{phoneNumber}">
                     <small class="text-danger" th:errors="*{phoneNumber}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="street">Ulice a číslo popisné</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="street" th:field="*{street}">
                     <small class="text-danger" th:errors="*{street}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="city">Město</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="city" th:field="*{city}">
                     <small class="text-danger" th:errors="*{city}"></small>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="zip-code">PSČ</label>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="zip-code" th:field="*{zipCode}">
                     <small class="text-danger" th:errors="*{zipCode}"></small>
                 </div>
             </div>
-            <div class="my-4">
-                <button class="btn btn-info" type="submit">Upravit</button>
+            <div class="row mt-4">
+                <div></div>
+                <div class="col-sm-5">
+                    <button class="btn btn-info" type="submit">Upravit</button>
+                </div>
             </div>
 
         </form>

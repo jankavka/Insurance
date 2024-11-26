@@ -11,7 +11,7 @@
     <div class="bg-success text-center py-2 mb-2 text-light" th:text="${success}" th:if="${success}"></div>
     <div class="bg-danger text-light" th:text="${error}" th:if="${error}"></div>
     <div class="container">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <th>Název pojištění</th>
                 <th>Částka</th>
@@ -24,7 +24,7 @@
                     <td th:text="${insurance.amount} + ' Kč'"></td>
                     <td><a th:href="@{'/pojistenci/detail/' + ${insurance.personId}}" th:text="${insurance.personDTO.name} + ' ' + ${insurance.personDTO.surname}"></a></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
+                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
                         <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
                     </td>
                 </tr>
