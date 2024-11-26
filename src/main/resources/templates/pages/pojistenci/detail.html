@@ -19,6 +19,7 @@
                             <p class="fw-bold">Ulice</p>
                             <p class="fw-bold">Město</p>
                             <p class="fw-bold">PSČ</p>
+                            <p><a class="btn btn-success" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit pojištěnce</a></p>
                         </div>
                         <div class="col-6">
                             <p th:text="${person.email}"></p>
@@ -40,7 +41,10 @@
                                 <tr th:each="insurance: ${insurances}">
                                     <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
                                     <td th:text="${insurance.amount}"></td>
-                                    <td><a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a></td>
+                                    <td>
+                                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
+                                        <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

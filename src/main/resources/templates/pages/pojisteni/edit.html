@@ -53,6 +53,7 @@
                 </div>
                 <div class="col-5">
                     <input class="form-control" id="valid-from" type="date" th:field="*{validFrom}">
+                    <small th:text="'Původní platnost od: ' + *{validFrom} "></small>
                     <small  class="text-danger" th:errors="*{validFrom}"></small>
                 </div>
             </div>
@@ -62,12 +63,16 @@
                 </div>
                 <div class="col-5">
                     <input class="form-control" id="valid-until" type="date" th:field="*{validUntil}">
+                    <small th:text="'Původní platnost do: ' + *{validUntil} "></small>
                     <small  class="text-danger" th:errors="*{validUntil}"></small>
                 </div>
             </div>
             <div class="my-4">
-                <button class="btn btn-info" type="submit">Upravit</button>
+                <button class="btn btn-success" type="submit">Upravit</button>
+                <a class="btn btn-info" th:href="@{/pojisteni}">Seznam pojištění</a>
             </div>
+        </form>
+    </div>
 
     
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>

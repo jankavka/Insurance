@@ -7,7 +7,7 @@
 </head>
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
-    <h1 class="text-center mt-3">Seznam pojištění</h1>
+    <h1 class="text-center mt-3 mb-4">Seznam pojištění</h1>
     <div class="bg-success text-center py-2 mb-2 text-light" th:text="${success}" th:if="${success}"></div>
     <div class="bg-danger text-light" th:text="${error}" th:if="${error}"></div>
     <div class="container">
@@ -21,8 +21,8 @@
             <tbody>
                 <tr th:each="insurance:${insuranceList}">
                     <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
-                    <td th:text="${insurance.amount}"></td>
-                    <td></td>
+                    <td th:text="${insurance.amount} + ' Kč'"></td>
+                    <td><a th:href="@{'/pojistenci/detail/' + ${insurance.personId}}" th:text="${insurance.personDTO.name} + ' ' + ${insurance.personDTO.surname}"></a></td>
                     <td>
                         <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
                         <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>

@@ -7,6 +7,7 @@ import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.InsuranceMapper;
+import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,9 @@ public class InsuranceServiceImpl implements InsuranceService{
     @Autowired
     PersonService personService;
 
+    @Autowired
+    PersonMapper personMapper;
+
     @Override
     public void create(InsuranceDTO insuranceDTO) {
         InsuranceEnity insuranceEnity = insuranceMapper.toInsuranceEntity(insuranceDTO);
@@ -46,8 +50,10 @@ public class InsuranceServiceImpl implements InsuranceService{
     public List<InsuranceDTO> insuranceList() {
         List<InsuranceDTO> list = new ArrayList<>();
         insuranceRepository.findAll().forEach(i -> list.add(insuranceMapper.toInsuranceDTO(i)));
-        list.stream().forEach(a-> a.setPersonId(insuranceRepository.findById(a.getId()).get().getPersonEntity().getPersonId()));
-
+        list.stream()
+                .forEach(a-> a.setPersonId(insuranceRepository.findById(a.getId()).get().getPersonEntity().getPersonId()));
+        list.stream()
+                .forEach(i-> i.setPersonDTO(personMapper.toPersonDTO(personRepository.findById(i.getPersonId()).get())));
         return list;
 
     }

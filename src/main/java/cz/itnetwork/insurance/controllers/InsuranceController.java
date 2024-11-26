@@ -52,11 +52,12 @@ public class InsuranceController {
     }
 
     @PostMapping("/nove-pojisteni/{personId}")
-    public String create(@Valid @ModelAttribute InsuranceDTO insuranceDTO, BindingResult result, @PathVariable long personId){
+    public String create(@Valid @ModelAttribute InsuranceDTO insuranceDTO, BindingResult result, @PathVariable long personId, RedirectAttributes redirectAttributes){
 
         if(result.hasErrors()){
             return renderCreateForm(personId,insuranceDTO);
         }
+        redirectAttributes.addFlashAttribute("success", "Pojištění přidáno");
         insuranceService.create(insuranceDTO);
 
         return "redirect:/pojisteni";
@@ -77,10 +78,12 @@ public class InsuranceController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editInsurance(@PathVariable long id, @Valid @ModelAttribute InsuranceDTO insuranceDTO, BindingResult result){
+    public String editInsurance(@PathVariable long id, @Valid @ModelAttribute InsuranceDTO insuranceDTO, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             return renderEditForm(id,insuranceDTO);
         }
+
+        redirectAttributes.addFlashAttribute("success", "Pojištění změněno");
         insuranceService.saveUpdatedInsurance(insuranceDTO);
         return "redirect:/pojisteni";
 

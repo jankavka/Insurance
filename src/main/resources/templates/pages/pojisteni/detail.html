@@ -28,11 +28,14 @@
                         </div>
                     </div>
                     <div>
-                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Edit</a>
+                        <a class="btn btn-success" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
+                        <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
+                        <a class="btn btn-info" th:href="@{/pojisteni}">Seznam pojištění</a>
                     </div>
             </div>
             
         </div>
+    </div>
 
 
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>

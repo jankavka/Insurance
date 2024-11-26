@@ -27,6 +27,16 @@ public class InsuranceDTO {
 
     private long personId;
 
+    private PersonDTO personDTO;
+
+    public PersonDTO getPersonDTO() {
+        return personDTO;
+    }
+
+    public void setPersonDTO(PersonDTO personDTO) {
+        this.personDTO = personDTO;
+    }
+
     public long getId() {
         return id;
     }

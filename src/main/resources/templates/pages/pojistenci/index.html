@@ -26,7 +26,7 @@
                     <td ><a th:href="@{'/pojistenci/detail/' + ${person.personId}}" th:text="${person.name} + ' ' + ${person.surname}"></a></td>
                     <td th:text="${person.street} + ', ' + ${person.city} + ', ' + ${person.zipCode}"></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Editovat</a>
+                        <a class="btn btn-success" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit</a>
                         <a class="btn btn-danger" th:href="@{'/pojistenci/delete/' + ${person.personId}}">Vymazat</a>
                     </td>
                 </tr>
