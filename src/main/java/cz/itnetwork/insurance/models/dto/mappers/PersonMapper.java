@@ -1,6 +1,5 @@
 package cz.itnetwork.insurance.models.dto.mappers;
 
-
 import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import org.mapstruct.Mapper;

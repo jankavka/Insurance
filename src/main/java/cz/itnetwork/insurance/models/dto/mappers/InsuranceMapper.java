@@ -5,8 +5,6 @@ import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import java.lang.annotation.Target;
-
 @Mapper(componentModel = "spring")
 public interface InsuranceMapper {
 

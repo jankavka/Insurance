@@ -2,7 +2,7 @@ package cz.itnetwork.insurance.models.services;
 
 import cz.itnetwork.insurance.data.entities.InsuranceEnity;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
-import cz.itnetwork.insurance.models.dto.PersonDTO;
+
 
 import java.util.List;
 

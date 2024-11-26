@@ -1,7 +1,6 @@
 package cz.itnetwork.insurance.controllers;
 
 
-import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
