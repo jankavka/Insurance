@@ -1,6 +1,7 @@
 package cz.itnetwork.insurance.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class PersonDTO {
 
@@ -16,6 +17,7 @@ public class PersonDTO {
     private String email;
 
     @NotBlank (message = "Vyplňte pole")
+    @Size(min = 9, message = "Telefonní číslo musí obsahovat minimálně 9 znaků")
     private String phoneNumber;
 
     @NotBlank (message = "Vyplňte pole")

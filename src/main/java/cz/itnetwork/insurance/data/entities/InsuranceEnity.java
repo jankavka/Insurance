@@ -15,7 +15,7 @@ public class InsuranceEnity {
     private String name;
 
     @Column (nullable = false)
-    private String amount;
+    private int amount;
 
     @Column (nullable = false)
     private String subjectOfInsurance;
@@ -47,11 +47,11 @@ public class InsuranceEnity {
         this.name = name;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

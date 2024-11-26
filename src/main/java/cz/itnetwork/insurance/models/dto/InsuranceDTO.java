@@ -1,7 +1,6 @@
 package cz.itnetwork.insurance.models.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -12,8 +11,9 @@ public class InsuranceDTO {
     @NotBlank( message = "Vyplňte pole")
     private String name;
 
-    @NotBlank( message = "Vyplňte pole")
-    private String amount;
+    @NotNull( message = "Vyplňte pole")
+    @Min(value = 1, message = "Částka musí být větší než nula")
+    private int amount;
 
     @NotBlank( message = "Vyplňte pole")
     private String subjectOfInsurance;
@@ -27,14 +27,6 @@ public class InsuranceDTO {
     private long personId;
 
     private PersonDTO personDTO;
-
-    public PersonDTO getPersonDTO() {
-        return personDTO;
-    }
-
-    public void setPersonDTO(PersonDTO personDTO) {
-        this.personDTO = personDTO;
-    }
 
     public long getId() {
         return id;
@@ -52,11 +44,13 @@ public class InsuranceDTO {
         this.name = name;
     }
 
-    public @NotBlank(message = "Vyplňte pole") String getAmount() {
+    @NotNull(message = "Vyplňte pole")
+    @Min(value = 1, message = "Částka musí být větší než nula")
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(@NotBlank(message = "Vyplňte pole") String amount) {
+    public void setAmount(@NotNull(message = "Vyplňte pole") @Min(value = 1, message = "Částka musí být větší než nula") int amount) {
         this.amount = amount;
     }
 
@@ -90,5 +84,13 @@ public class InsuranceDTO {
 
     public void setPersonId(long personId) {
         this.personId = personId;
+    }
+
+    public PersonDTO getPersonDTO() {
+        return personDTO;
+    }
+
+    public void setPersonDTO(PersonDTO personDTO) {
+        this.personDTO = personDTO;
     }
 }
