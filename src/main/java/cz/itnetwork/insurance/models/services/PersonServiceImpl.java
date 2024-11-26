@@ -5,15 +5,11 @@ import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
+import cz.itnetwork.insurance.models.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Spliterator;
 import java.util.stream.StreamSupport;
-
-import static java.util.stream.StreamSupport.stream;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -48,7 +44,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonEntity fetchEntity(long personId) {
-        return personRepository.findById(personId).get();
+        return personRepository.findById(personId).orElseThrow(PersonNotFoundException::new);
     }
 
     @Override

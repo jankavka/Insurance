@@ -6,6 +6,7 @@ import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
+import cz.itnetwork.insurance.models.exceptions.PersonNotFoundException;
 import cz.itnetwork.insurance.models.services.InsuranceService;
 import cz.itnetwork.insurance.models.services.PersonService;
 import jakarta.validation.Valid;
@@ -97,4 +98,12 @@ public class PersonsController {
 
         return "redirect:/pojistenci";
     }
+
+    @ExceptionHandler({PersonNotFoundException.class})
+    public String handlePersonNotFoundException(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("error", "Pojištěnec nenalezen");
+
+        return "redirect:/pojistenci";
+    }
+
 }

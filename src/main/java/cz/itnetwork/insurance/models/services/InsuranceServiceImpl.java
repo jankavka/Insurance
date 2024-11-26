@@ -1,15 +1,13 @@
 package cz.itnetwork.insurance.models.services;
 
 import cz.itnetwork.insurance.data.entities.InsuranceEnity;
-import cz.itnetwork.insurance.data.entities.PersonEntity;
 import cz.itnetwork.insurance.data.repositories.InsuranceRepository;
 import cz.itnetwork.insurance.data.repositories.PersonRepository;
 import cz.itnetwork.insurance.models.dto.InsuranceDTO;
-import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.InsuranceMapper;
 import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
+import cz.itnetwork.insurance.models.exceptions.InsuranceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,17 +48,15 @@ public class InsuranceServiceImpl implements InsuranceService{
     public List<InsuranceDTO> insuranceList() {
         List<InsuranceDTO> list = new ArrayList<>();
         insuranceRepository.findAll().forEach(i -> list.add(insuranceMapper.toInsuranceDTO(i)));
-        list.stream()
-                .forEach(a-> a.setPersonId(insuranceRepository.findById(a.getId()).get().getPersonEntity().getPersonId()));
-        list.stream()
-                .forEach(i-> i.setPersonDTO(personMapper.toPersonDTO(personRepository.findById(i.getPersonId()).get())));
+        list.forEach(a-> a.setPersonId(insuranceRepository.findById(a.getId()).orElseThrow().getPersonEntity().getPersonId()));
+        list.forEach(i-> i.setPersonDTO(personMapper.toPersonDTO(personRepository.findById(i.getPersonId()).orElseThrow())));
         return list;
 
     }
 
     @Override
     public InsuranceDTO getById(long id) {
-        return insuranceMapper.toInsuranceDTO(insuranceRepository.findById(id).get());
+        return insuranceMapper.toInsuranceDTO(fetchedEntity(id));
     }
 
     @Override
@@ -79,7 +75,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 
     @Override
     public void saveUpdatedInsurance(InsuranceDTO insuranceDTO){
-        InsuranceEnity fetchedEntity = insuranceRepository.findById(insuranceDTO.getId()).get();
+        InsuranceEnity fetchedEntity = insuranceRepository.findById(insuranceDTO.getId()).orElseThrow(InsuranceNotFoundException::new);
         insuranceMapper.updateInsuranceEntity(insuranceDTO, fetchedEntity);
         insuranceRepository.save(fetchedEntity);
 
@@ -87,7 +83,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 
     @Override
     public InsuranceEnity fetchedEntity(long id) {
-        return insuranceRepository.findById(id).get();
+        return insuranceRepository.findById(id).orElseThrow(InsuranceNotFoundException::new);
     }
 
 

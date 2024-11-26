@@ -7,6 +7,7 @@ import cz.itnetwork.insurance.models.dto.InsuranceDTO;
 import cz.itnetwork.insurance.models.dto.PersonDTO;
 import cz.itnetwork.insurance.models.dto.mappers.InsuranceMapper;
 import cz.itnetwork.insurance.models.dto.mappers.PersonMapper;
+import cz.itnetwork.insurance.models.exceptions.InsuranceNotFoundException;
 import cz.itnetwork.insurance.models.services.InsuranceService;
 import cz.itnetwork.insurance.models.services.PersonService;
 import jakarta.validation.Valid;
@@ -47,7 +48,7 @@ public class InsuranceController {
 
     @GetMapping("/nove-pojisteni/{personId}")
     public String renderCreateForm(@PathVariable long personId, @ModelAttribute InsuranceDTO insuranceDTO){
-        insuranceDTO.setPersonId(personId);
+        //insuranceDTO.setPersonId(personId);
         return "pages/pojisteni/create";
     }
 
@@ -94,6 +95,13 @@ public class InsuranceController {
         InsuranceDTO insuranceDTO = insuranceService.getById(id);
         model.addAttribute("insurance", insuranceDTO);
         return "pages/pojisteni/detail";
+    }
+
+    @ExceptionHandler({InsuranceNotFoundException.class})
+    public String handleInsuranceNotFoundException(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("error", "Pojištění nenalezeno");
+
+        return "redirect:/pojisteni";
     }
 
 

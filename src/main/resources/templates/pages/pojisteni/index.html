@@ -9,7 +9,7 @@
     <header th:replace="~{fragments/layout.html ::header}"></header>
     <h1 class="text-center mt-3 mb-4">Seznam pojištění</h1>
     <div class="bg-success text-center py-2 mb-2 text-light" th:text="${success}" th:if="${success}"></div>
-    <div class="bg-danger text-light" th:text="${error}" th:if="${error}"></div>
+    <div class="bg-danger text-center py-2 mb-2 text-light" th:text="${error}" th:if="${error}"></div>
     <div class="container">
         <table class="table table-striped">
             <thead>
