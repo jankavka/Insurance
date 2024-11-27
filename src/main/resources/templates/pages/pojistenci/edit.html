@@ -42,7 +42,10 @@
                     <label class="col-form-label"  for="phone-number">Telefonní číslo</label>
                 </div>
                 <div class="col-sm-5 col-md-6">
-                    <input class="form-control" type="text" id="phone-number" th:field="*{phoneNumber}">
+                    <div class="input-group">
+                        <span class="input-group-text" id="prexif">+420</span>
+                        <input class="form-control" type="text" id="phone-number" th:field="*{phoneNumber}" aria-describedby="prefix">
+                    </div>
                     <small class="text-danger" th:errors="*{phoneNumber}"></small>
                 </div>
             </div>
