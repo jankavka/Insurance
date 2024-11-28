@@ -7,10 +7,9 @@
 </head>
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
-
     <div class="container mt-4">
-        <h1 class="mb-4">Upravit pojištění</h1>
-        <form th:action="@{'/pojisteni/edit/' + ${id}}" method="post" th:object="${insuranceDTO}">
+        <h1 class="mb-4">Vytvořit nové pojištění</h1>
+        <form th:action="@{'/insurance/new-insurance/' + ${personId}}" method="post" th:object="${insuranceDTO}">
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="name">Typ pojištění</label>
@@ -27,7 +26,8 @@
                 </div>
             </div>
             <div>
-                <input type="hidden"th:field="*{id}"> 
+                <input type="hidden"th:field="*{id}">
+                <input type="hidden" th:field="*{personId}" /> 
             </div>
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-2">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <input class="form-control" id="amount" type="text" th:field="*{amount}">
-                    <small class="text-danger"  th:errors="*{amount}"></small>
+                    <small class="text-danger" th:errors="*{amount}"></small>
                 </div>
             </div>
             <div class="row mb-3">
@@ -53,8 +53,7 @@
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <input class="form-control" id="valid-from" type="date" th:field="*{validFrom}">
-                    <small th:text="'Původní platnost od: ' + *{validFrom} "></small>
-                    <small  class="text-danger" th:errors="*{validFrom}"></small>
+                    <small class="text-danger" th:errors="*{validFrom}"></small>
                 </div>
             </div>
             <div class="row mb-3">
@@ -63,17 +62,16 @@
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <input class="form-control" id="valid-until" type="date" th:field="*{validUntil}">
-                    <small th:text="'Původní platnost do: ' + *{validUntil} "></small>
-                    <small  class="text-danger" th:errors="*{validUntil}"></small>
+                    <small class="text-danger" th:errors="*{validUntil}"></small>
                 </div>
             </div>
             <div class="row mt-4">
                 <div></div>
                 <div class="col-sm-5">
-                    <button class="btn btn-success" type="submit">Upravit</button>
-                    <a class="btn btn-info" th:href="@{/pojisteni}">Seznam pojištění</a>
+                    <button class="btn btn-info" type="submit">Vytvořit</button>
                 </div>
             </div>
+
         </form>
     </div>
 

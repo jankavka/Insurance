@@ -20,12 +20,12 @@
             </thead>
             <tbody>
                 <tr th:each="insurance:${insuranceList}">
-                    <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
+                    <td><a th:href="@{'/insurance/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
                     <td th:text="${insurance.amount} + ' Kč'"></td>
-                    <td><a th:href="@{'/pojistenci/detail/' + ${insurance.personId}}" th:text="${insurance.personDTO.name} + ' ' + ${insurance.personDTO.surname}"></a></td>
+                    <td><a th:href="@{'/person/detail/' + ${insurance.personId}}" th:text="${insurance.personDTO.name} + ' ' + ${insurance.personDTO.surname}"></a></td>
                     <td>
-                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
-                        <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
+                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/insurance/edit/' + ${insurance.id}}">Upravit</a>
+                        <a class="btn btn-danger" th:href="@{'/insurance/smazat/' + ${insurance.id}}">Smazat</a>
                     </td>
                 </tr>
             </tbody>

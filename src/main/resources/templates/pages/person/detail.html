@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <a class="btn btn-success" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit pojištěnce</a>
+                        <a class="btn btn-success" th:href="@{'/person/edit/' + ${person.personId}}">Upravit pojištěnce</a>
                     </div>
                 </div>
             </div>
@@ -71,17 +71,17 @@
                         </thead>
                         <tbody>
                             <tr th:each="insurance: ${insurances}">
-                                <td><a th:href="@{'/pojisteni/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
+                                <td><a th:href="@{'/insurance/detail/' + ${insurance.id}}" th:text="${insurance.name}"></a></td>
                                 <td th:text="${insurance.amount} + ' Kč'"></td>
                                 <td class="text-sm-center text-center">
-                                    <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojisteni/edit/' + ${insurance.id}}">Upravit</a>
-                                    <a class="btn btn-danger" th:href="@{'/pojisteni/smazat/' + ${insurance.id}}">Smazat</a>
+                                    <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/insurance/edit/' + ${insurance.id}}">Upravit</a>
+                                    <a class="btn btn-danger" th:href="@{'/insurance/delete/' + ${insurance.id}}">Smazat</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div>
-                        <a class="btn btn-info" th:href="@{'/pojisteni/nove-pojisteni/' + ${person.personId}}">Přidat pojištění</a>
+                        <a class="btn btn-info" th:href="@{'/insurance/new-insurance/' + ${person.personId}}">Přidat pojištění</a>
                     </div>
                 </div>
     </div>

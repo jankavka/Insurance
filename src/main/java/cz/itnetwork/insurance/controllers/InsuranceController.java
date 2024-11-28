@@ -20,38 +20,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/pojisteni")
+@RequestMapping("/insurance")
 public class InsuranceController {
 
     @Autowired
     InsuranceService insuranceService;
 
-    @Autowired
-    PersonService personService;
-
-    @Autowired
-    PersonRepository personRepository;
 
     @Autowired
     InsuranceMapper insuranceMapper;
 
-    @Autowired
-    PersonMapper personMapper;
 
     @GetMapping
     public String renderInsurance(Model model, PersonDTO personDTO){
         List<InsuranceDTO> insuranceList =  insuranceService.insuranceList();
         model.addAttribute("insuranceList", insuranceList);
-        return "pages/pojisteni/index";
+        return "pages/insurance/index";
     }
 
-    @GetMapping("/nove-pojisteni/{personId}")
+    @GetMapping("/new-insurance/{personId}")
     public String renderCreateForm(@PathVariable long personId, @ModelAttribute InsuranceDTO insuranceDTO){
-        //insuranceDTO.setPersonId(personId);
-        return "pages/pojisteni/create";
+
+        return "pages/insurance/create";
     }
 
-    @PostMapping("/nove-pojisteni/{personId}")
+    @PostMapping("/new-insurance/{personId}")
     public String create(@Valid @ModelAttribute InsuranceDTO insuranceDTO, BindingResult result, @PathVariable long personId, RedirectAttributes redirectAttributes){
 
         if(result.hasErrors()){
@@ -60,21 +53,21 @@ public class InsuranceController {
         redirectAttributes.addFlashAttribute("success", "Pojištění přidáno");
         insuranceService.create(insuranceDTO);
 
-        return "redirect:/pojisteni";
+        return "redirect:/insurance";
     }
 
-    @GetMapping("/smazat/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable long id, RedirectAttributes redirectAttributes){
         insuranceService.delete(id);
         redirectAttributes.addFlashAttribute("success", "Pojištění smazáno");
-        return "redirect:/pojisteni";
+        return "redirect:/insurance";
     }
 
     @GetMapping("/edit/{id}")
     public String renderEditForm (@PathVariable long id, InsuranceDTO insuranceDTO){
         InsuranceDTO fetchedDTO = insuranceService.getById(id);
         insuranceMapper.updateInsuranceDTO(fetchedDTO,insuranceDTO);
-        return "pages/pojisteni/edit";
+        return "pages/insurance/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -85,7 +78,7 @@ public class InsuranceController {
 
         redirectAttributes.addFlashAttribute("success", "Pojištění změněno");
         insuranceService.saveUpdatedInsurance(insuranceDTO);
-        return "redirect:/pojisteni";
+        return "redirect:/insurance";
 
     }
 
@@ -93,14 +86,14 @@ public class InsuranceController {
     public String renderInsuranceDetail(@PathVariable long id, Model model){
         InsuranceDTO insuranceDTO = insuranceService.getById(id);
         model.addAttribute("insurance", insuranceDTO);
-        return "pages/pojisteni/detail";
+        return "pages/insurance/detail";
     }
 
     @ExceptionHandler({InsuranceNotFoundException.class})
     public String handleInsuranceNotFoundException(RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("error", "Pojištění nenalezeno");
 
-        return "redirect:/pojisteni";
+        return "redirect:/insurance";
     }
 
 

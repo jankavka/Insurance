@@ -14,7 +14,7 @@
    
     <div class="container">
         <div class="text-end my-3">
-            <a class="btn btn-info" th:href="@{/pojistenci/novy}">Vytvořit pojištěnce</a>
+            <a class="btn btn-info" th:href="@{/person/new}">Vytvořit pojištěnce</a>
         </div>
         
         <table class="table table-striped">
@@ -28,12 +28,12 @@
             <tbody>
                 <tr th:each="person:${persons}">
                     <td>
-                        <a th:href="@{'/pojistenci/detail/' + ${person.personId}}" th:text="${person.name} + ' ' + ${person.surname}"></a>
+                        <a th:href="@{'/person/detail/' + ${person.personId}}" th:text="${person.name} + ' ' + ${person.surname}"></a>
                     </td>
                     <td th:text="${person.street} + ', ' + ${person.city} + ', ' + ${person.zipCode}"></td>
                     <td>
-                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/pojistenci/edit/' + ${person.personId}}">Upravit</a>
-                        <a class="btn btn-danger" th:href="@{'/pojistenci/delete/' + ${person.personId}}">Smazat</a>
+                        <a class="btn btn-success mb-1 mb-sm-0" th:href="@{'/person/edit/' + ${person.personId}}">Upravit</a>
+                        <a class="btn btn-danger" th:href="@{'/person/delete/' + ${person.personId}}">Smazat</a>
                     </td>
                 </tr>
             </tbody>

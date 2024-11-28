@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout.html :: head}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Vytvořit pojištěnce</title>
+</head >
 <body>
     <header th:replace="~{fragments/layout.html ::header}"></header>
     <div class="container mt-4">
-        <h1 class="mb-4">Upravit pojištěnce</h1>
-        <form th:action="@{'/pojistenci/edit/'+ ${personId}}" method="post" th:object="${personDTO}">
+        <h1 class="mb-4">Vytvořit pojištěnce</h1>
+        <form th:action="@{/person}" method="post" th:object="${personDTO}">
+            
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-2">
                     <label class="col-form-label" for="name">Jméno</label>
@@ -30,7 +31,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-2">
-                    <label class="col-form-label" for="email">E-mail</label>
+                    <label class="col-form-label " for="email">E-mail</label>
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <input class="form-control" type="text" id="email" th:field="*{email}">
@@ -39,7 +40,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-2">
-                    <label class="col-form-label"  for="phone-number">Telefonní číslo</label>
+                    <label class="col-form-label" for="phone-number">Telefonní číslo</label>
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <div class="input-group">
@@ -76,17 +77,17 @@
                     <small class="text-danger" th:errors="*{zipCode}"></small>
                 </div>
             </div>
+
             <div class="row mt-4">
                 <div></div>
                 <div class="col-sm-5">
-                    <button class="btn btn-info" type="submit">Upravit</button>
+                    <button class="btn btn-info" type="submit">Vytvořit</button>
                 </div>
             </div>
 
         </form>
     </div>
-
-
+    
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/pojistenci")
+@RequestMapping("/person")
 public class PersonsController {
 
     @Autowired
@@ -29,9 +29,6 @@ public class PersonsController {
     PersonMapper personMapper;
 
     @Autowired
-    PersonRepository personRepository;
-
-    @Autowired
     InsuranceService insuranceService;
 
     @GetMapping
@@ -39,12 +36,12 @@ public class PersonsController {
         List<PersonDTO> persons = personService.showAll();
         model.addAttribute("persons", persons);
 
-        return "pages/pojistenci/index";
+        return "pages/person/index";
     }
 
-    @GetMapping("/novy")
+    @GetMapping("/new")
     public String renderCreatePersonForm(@ModelAttribute PersonDTO personDTO){
-        return "pages/pojistenci/create";
+        return "pages/person/create";
     }
 
     @PostMapping
@@ -56,7 +53,7 @@ public class PersonsController {
         personService.create(personDTO);
         redirectAttributes.addFlashAttribute("success","Pojištěnec vytvořen");
 
-        return "redirect:/pojistenci";
+        return "redirect:/person";
     }
 
     @GetMapping("/detail/{personId}")
@@ -67,7 +64,7 @@ public class PersonsController {
         model.addAttribute("insurances", insurances);
 
 
-        return "pages/pojistenci/detail";
+        return "pages/person/detail";
     }
 
     @GetMapping("/edit/{personId}")
@@ -75,7 +72,7 @@ public class PersonsController {
         PersonDTO fetchedDTO = personService.findById(personId);
         personMapper.updatePersonDTO(fetchedDTO,personDTO);
 
-        return "pages/pojistenci/edit";
+        return "pages/person/edit";
     }
 
     @PostMapping("/edit/{personId}")
@@ -87,7 +84,7 @@ public class PersonsController {
         personService.saveUpdatedEntity(personDTO);
         redirectAttributes.addFlashAttribute("success","Záznam pojištěnce změněn");
 
-        return "redirect:/pojistenci";
+        return "redirect:/person";
     }
 
     @GetMapping("/delete/{personId}")
@@ -95,14 +92,14 @@ public class PersonsController {
         personService.delete(personId);
         redirectAttributes.addFlashAttribute("success","Pojištěnec smazán");
 
-        return "redirect:/pojistenci";
+        return "redirect:/person";
     }
 
     @ExceptionHandler({PersonNotFoundException.class})
     public String handlePersonNotFoundException(RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("error", "Pojištěnec nenalezen");
 
-        return "redirect:/pojistenci";
+        return "redirect:/person";
     }
 
 }
