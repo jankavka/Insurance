@@ -8,32 +8,32 @@ import java.util.List;
 public class PersonEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long personId;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String surname;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String email;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String phoneNumber;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String street;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String city;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String zipCode;
 
     @OneToMany(mappedBy = "personEntity", cascade = CascadeType.ALL)
-    private List<InsuranceEnity> insurances;
+    private List<InsuranceEntity> insurances;
 
     public long getPersonId() {
         return personId;
@@ -67,11 +67,11 @@ public class PersonEntity {
         this.email = email;
     }
 
-    public List<InsuranceEnity> getInsurances() {
+    public List<InsuranceEntity> getInsurances() {
         return insurances;
     }
 
-    public void setInsurances(List<InsuranceEnity> insurances) {
+    public void setInsurances(List<InsuranceEntity> insurances) {
         this.insurances = insurances;
     }
 

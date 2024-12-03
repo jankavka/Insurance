@@ -5,29 +5,29 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class InsuranceEnity {
+public class InsuranceEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private int amount;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String subjectOfInsurance;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private LocalDate validFrom;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private LocalDate validUntil;
 
     @ManyToOne
-    @JoinColumn (name = "person_id")
+    @JoinColumn(name = "person_id")
     private PersonEntity personEntity;
 
 

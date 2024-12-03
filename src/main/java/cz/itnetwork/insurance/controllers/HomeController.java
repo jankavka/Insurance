@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 
+    /**
+     * This method renders the home page of the application.
+     *
+     * @return The path to the template ("pages/home/index") that displays the home page.
+     */
     @GetMapping
-    public String renderHome(){
+    public String renderHome() {
         return "pages/home/index";
     }
 }

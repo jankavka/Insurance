@@ -1,4 +1,4 @@
 package cz.itnetwork.insurance.models.exceptions;
 
-public class InsuranceNotFoundException extends RuntimeException{
+public class InsuranceNotFoundException extends RuntimeException {
 }

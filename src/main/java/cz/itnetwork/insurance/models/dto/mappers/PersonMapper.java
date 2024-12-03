@@ -12,9 +12,9 @@ public interface PersonMapper {
 
     PersonEntity toPersonEntity(PersonDTO personDTO);
 
-    void updatePersonDTO (PersonDTO source, @MappingTarget PersonDTO target);
+    void updatePersonDTO(PersonDTO source, @MappingTarget PersonDTO target);
 
-    void updatePersonEntity(PersonDTO source,@MappingTarget PersonEntity target);
+    void updatePersonEntity(PersonDTO source, @MappingTarget PersonEntity target);
 
 
 }
